@@ -34,6 +34,15 @@ Mitől lesz "oneliner":
   - The even longer one.
   - FastIO template itt is.
 
+- https://codeforces.com/contest/1721/submission/169816722
+  - Counteres megoldás.
+
+- https://codeforces.com/contest/1721/submission/169848796
+  - Ha nem ismered a Python trükkjeit.
+
+- https://codeforces.com/contest/1721/submission/170245380
+  - Adatszerkezet (set) nélkül.
+
 - https://codeforces.com/contest/1721/submission/170773003
   - Szorzás = string konkatenáció annyiszor.
   - Exec végrehajtja a stringet.
@@ -42,7 +51,7 @@ Mitől lesz "oneliner":
   - Golfozik?
 
 - https://codeforces.com/contest/1721/submission/169854934
-  - Am foreachet lehet 1 sorba is írni (én list comprehensiont használtam).
+  - Am foreachet lehet 1 sorba is írni és akkor "oneliner" (én list comprehensiont használtam).
 
 - https://codeforces.com/contest/1721/submission/169804030
   - Nyertes, C++-ban: sokkal több sor, de itt a nyelv miatt muszáj.
