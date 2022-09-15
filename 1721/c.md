@@ -20,3 +20,18 @@
 ![c](assets/c_max_2.png)
 
 - Ugyanez a kötözgetés előre irányban is működik egyébként, de ott egyszerűbb a helyzet.
+
+Érdekes megoldások:
+
+- https://codeforces.com/contest/1721/submission/172032690
+  - Más logika a hátrafelé menéshez.
+
+- https://codeforces.com/contest/1721/submission/171672377
+  - Ez a mienk.
+
+- https://codeforces.com/contest/1721/submission/170864312
+  - Lol komment.
+
+- https://codeforces.com/contest/1721/submission/169877236
+- https://codeforces.com/contest/1721/submission/170001390
+- https://codeforces.com/contest/1721/submission/169825908
