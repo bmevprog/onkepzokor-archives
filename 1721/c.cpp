@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #ifdef LOCAL
-#include "algo/debug.h"
+#include "../../algo/debug.h"
 #else
 #define debug(...) 42
 #endif
@@ -14,9 +14,10 @@ int main() {
   cin>>k;
 
   for(int cases=0; cases < k; ++cases) {
-
-    vector<int> a;
-    vector<int> b;
+  vector<int> a;
+  vector<int> b;
+  vector<int> dmins;
+  vector<int> dmaxes;
 
     int n;
     cin >> n;
@@ -32,13 +33,10 @@ int main() {
       b.push_back(x);
     }
 
-    vector<int> dmins;
     for(int i=0; i<n; ++i) {
       int bmin = *lower_bound(b.begin(), b.end(), a[i]);
       dmins.push_back(bmin-a[i]);
     }
-
-    vector<int> dmaxes;
 
     int j = 0;
     for(int i=0; i<n; ++i) {
