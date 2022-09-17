@@ -4,7 +4,7 @@
 
 https://cerc2021.acm.si/#results
 
-BUTE-1
+BUTE-1 (57)
 
 |     | Problem             | Attempts | Solved             | Penalty |
 | :-: | :------------------ | :------: | :----------------: | :-----: |
@@ -12,7 +12,7 @@ BUTE-1
 | A   | Airline             | 1        | :x:                |         |
 | L   | Systematic salesman | 1        | :x:                |         |
 
-BUTE-2
+BUTE-2 (59)
 
 |     | Problem              | Attempts | Solved             | Penalty |
 | :-: | :------------------- | :------: | :----------------: | :-----: |
