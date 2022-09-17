@@ -1,5 +1,7 @@
 # A - Airline
 
+https://putka-cerc.acm.si/tasks/t/airline/
+
 An airline company offers regular flights involving $n$ different airports. Each flight links two airports directly (i.e. without stopping at any other airport) and allows travel in both directions. The flights are arranged such that for any choice of starting airport $s$ and destination airport $t$, there exists exactly one sequence of flights between the two airports without visiting any airport more than once. The number of flights in this sequence is called the _distance_ between $s$ and $t$.
 
 Were the airline to add another flight, say between airports $x$ and $y$, it is possible that for some pairs $(s,t)$, another, shorter sequence of flights from $s$ to $t$ would form. The more pairs affected, the more promising the new connection between $x$ and $y$ is considered to be. The airline is asking you to help them evaluate several possible additions $(x,y)$ with respect to this criterion.
@@ -19,3 +21,31 @@ The remaining $q$ lines describe the possible additional flights that are being 
 - $1\leq{}u_i\leq{}n$ and $1\leq{}v_i\leq{}n$ and $u_i\neq{}v_i$
 - $1\leq{}x_i\leq{}n$ and $1\leq{}y_i\leq{}n$ and $x_i\neq{}y_i$
 - $\sum\limits_{i=1}^{q} d_i \leq{} 10^7$, where $d_i$ is the distance between $x_i$ and $y_i$ in the original flight network.
+
+## Output data
+
+Output $q$ lines; in the $i$-th line, output the number of pairs $(s,t)$ such that $1\leq{}s<t\leq{}n$ and the distance between airports $s$ and $t$ would decrease if the original network of $n-1$ flights were supplemented by a direct flight connection between the airports $x_i$ and $y_i$.
+
+## Example
+
+### Input
+
+```
+8 2
+1 5
+5 2
+7 3
+3 8
+6 4
+4 5
+6 3
+5 7
+2 6
+```
+
+### Output
+
+```
+10
+4
+```
