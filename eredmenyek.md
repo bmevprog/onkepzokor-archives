@@ -17,4 +17,4 @@ BUTE-2 (59)
 |     | Problem              | Attempts | Solved             | Penalty |
 | :-: | :------------------- | :------: | :----------------: | :-----: |
 | F   | Letters              | 1        | :white_check_mark: | 2:30:07 |
-| K   | Single-track railway | 1        | :x:                |         |
+| K   | Single-track railway | 5        | :x:                |         |
