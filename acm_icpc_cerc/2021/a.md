@@ -24,7 +24,7 @@ The remaining $q$ lines describe the possible additional flights that are being 
 
 ## Output data
 
-Output $q$ lines; in the $i$-th line, output the number of pairs $(s,t)$ such that $1\leq{}s<t\leq{}n$ and the distance between airports $s$ and $t$ would decrease if the original network of $n-1$ flights were supplemented by a direct flight connection between the airports $x_i$ and $y_i$.
+Output $q$ lines; in the $i$-th line, output the number of pairs $(s,t)$ such that $1 \leq{} s < t \leq{} n$ and the distance between airports $s$ and $t$ would decrease if the original network of $n-1$ flights were supplemented by a direct flight connection between the airports $x_i$ and $y_i$.
 
 ## Example
 
