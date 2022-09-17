@@ -5,10 +5,16 @@
 https://cerc2021.acm.si/#results
 
 BUTE-1
-- F - Letters: 3 Attempts, Solved
-- A - Airline: 1 Attempt
-- L - Systematic salesman: 1 Attempt
+
+|   | Problem             | Attempts | Solved | Penalty |
+| - | ------------------- | -------- | ------ | ------- |
+| F | Letters             | 3        | :tick: | 1:32:43 |
+| A | Airline             | 1        | :no:   |         |
+| L | Systematic salesman | 1        | :no:   |         |
 
 BUTE-2
-- F - Letters: 1 Attempt, Solved
-- K - Single-track railway, 1 Attempt
+
+|   | Problem              | Attempts | Solved | Penalty |
+| - | -------------------- | -------- | ------ | ------- |
+| F | Letters              | 1        | :tick: | 2:30:07 |
+| K | Single-track railway | 1        | :no:   |         |
