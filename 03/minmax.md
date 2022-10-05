@@ -11,13 +11,12 @@
   - Ekkor a b[s-1]-nek ki legyen a párja? Ha a[s]-től balra keresünk neki párt, pl a[l] l<s-t, akkor az egy ugyanilyen problémát fog okozni, b[l]-nek nem lesz párja. Hiába cseréljük kisebbre, csak görgetjük magunk előtt a hibát.
   - a[s]-től jobbra pedig csak növekednek az a értékek, tehát csak rosszabb lesz a helyzet.
 
-![c](assets/c_max.png)
+![c](assets/max.png)
 
 - Kb érvelés 2:
   - Az a tömbben piros halmaz darabnyi elemet kell az i-j átló bal oldalára / "eggyel hátrébb" behúzni, tehát ha a piros halmazon belül van egy túl nagy különbség "hátra", az valamelyik behúzásban benne lesz, tehát túl nagy lesz a különbség "hátra" = negatív lesz.
 
-  
-![c](assets/c_max_2.png)
+![c](assets/max2.png)
 
 - Ugyanez a kötözgetés előre irányban is működik egyébként, de ott egyszerűbb a helyzet.
 

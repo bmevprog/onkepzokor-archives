@@ -1,6 +1,6 @@
 # 1721 B
 
-![b](assets/b.png)
+![b](assets/laser.png)
 
 - Legegyszerűbb a falak mellett elmenni: felső + jobb vagy bal + alsó fal.
 - Mikor nem lehet így? > Ha mindkét útvonal blokkolva van.
