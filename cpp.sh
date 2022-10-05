@@ -1,9 +1,9 @@
 #!/bin/bash
-
 set -e
+shopt -s globstar
 
+# Process options.
 debug=false
-
 while getopts ":d" option; do
   case $option in
     h) echo "usage: $0 [-d] [source].cpp ..."; exit ;;
@@ -12,21 +12,22 @@ while getopts ":d" option; do
   esac
 done
 
+# Remove the options from the positional parameters.
+shift $(( OPTIND - 1 ))
+
+# Compile
 gpp_opts=()
 $debug && gpp_opts+=( -DLOCAL )
 
-# remove the options from the positional parameters
-shift $(( OPTIND - 1 ))
-
 cpp_file="$1"
+out_file="${cpp_file%.*}".out
+g++ -o "${out_file}" ${gpp_opts[@]} "${cpp_file}"
 
-file="${cpp_file%.*}"
+# Run on all input files
+dir="$(dirname "${cpp_file}")"
 
-in_file="$file".in
-ans_file="$file".ans
-out_file="$file".out
-
-set -x
-
-g++ -o ${out_file} ${gpp_opts[@]} "${cpp_file}"
-./${out_file} < ${in_file} | tee ${ans_file}
+for in_file in "$dir"/**/*.in; do
+  ans_file="${in_file%.*}".ans
+  echo $in_file ">>" $ans_file
+  ./"${out_file}" < "${in_file}" > "${ans_file}"
+done
