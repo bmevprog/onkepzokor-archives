@@ -1,4 +1,6 @@
-# 1721 C
+# 03 - Min-Max Array Transformation
+
+https://codeforces.com/group/2cnVva0QXt/contest/399604/problem/03
 
 - Ha az nem jó megoldás, hogy di = bi-ai, vagyis minden ai az ugyanolyan indexű bi-vel van párban, akkor a feladat nem is megoldható.
 - Ha megoldható a feladat, akkor az a kérdés, hogy függetlenül egymástól a di változóknak mi a minimum és maximum értéke.
@@ -20,7 +22,7 @@
 
 - Ugyanez a kötözgetés előre irányban is működik egyébként, de ott egyszerűbb a helyzet.
 
-Érdekes megoldások:
+## Implementációk
 
 - https://codeforces.com/contest/1721/submission/172032690
   - Más logika a hátrafelé menéshez.
@@ -29,7 +31,7 @@
   - Ez a mienk.
 
 - https://codeforces.com/contest/1721/submission/170864312
-  - Lol komment.
+  - Lol komment. :)
 
 - https://codeforces.com/contest/1721/submission/169877236
 - https://codeforces.com/contest/1721/submission/170001390

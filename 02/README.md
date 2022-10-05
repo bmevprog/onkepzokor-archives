@@ -1,4 +1,8 @@
-# 1721 B
+# 02 - Deadly Laser
+
+https://codeforces.com/group/2cnVva0QXt/contest/399604/problem/02
+
+## Megoldás
 
 ![b](assets/laser.png)
 
@@ -12,7 +16,7 @@
 
 Tehát vagy a fenti 4 eset egyike van és nem megoldható, vagy a falak mellett elmenve n+m-2 lépéssel megoldható.
 
-Érdekes megoldások:
+## Implementációk
 
 - https://codeforces.com/contest/1721/submission/172058848
   - Összevonta az eseteket.
