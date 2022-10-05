@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 
 #ifdef LOCAL
-#include "../debug.h"
+#include "../algo/debug.h"
 #else
 #define debug(...) 42
 #endif
