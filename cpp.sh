@@ -23,10 +23,10 @@ cpp_file="$1"
 file="${cpp_file%.*}"
 
 in_file="$file".in
+ans_file="$file".ans
 out_file="$file".out
-exec_file="$file"
 
 set -x
 
-g++ -o ${exec_file} ${gpp_opts[@]} "${cpp_file}"
-./${exec_file} < ${in_file} | tee ${out_file}
+g++ -o ${out_file} ${gpp_opts[@]} "${cpp_file}"
+./${out_file} < ${in_file} | tee ${ans_file}
