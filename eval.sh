@@ -2,14 +2,24 @@
 set -e
 shopt -s globstar
 
+function print_usage {
+  echo "usage: $0 [-d] <source_file.(py|cpp)>";
+  echo
+  echo "eval.sh evaluates the code in source_file for all .in"
+  echo "files in its directory (recursively) and saves the output"
+  echo "in the corresponding .ans file on the same path."
+  echo
+  echo "  -d  turn on debug-mode (adds -DLOCAL flag during cpp compilation)"
+}
+
 function process_params {
   # Process options.
   debug=false
-  while getopts ":hd" option; do
+  while getopts ":dh" option; do
     case $option in
-      h) echo "usage: $0 [-d] [source_file] ..."; exit ;;
       d) debug=true ;;
-      ?) echo "error: option -$OPTARG is not implemented"; exit ;;
+      h) print_usage; exit ;;
+      ?) echo "unknown option: -$OPTARG"; echo; print_usage; exit ;;
     esac
   done
 
@@ -30,9 +40,9 @@ function compile_cpp {
 
 function compile {
   case $extension in
-    cpp) compile_cpp ;;
-    py) true ;;
-    ?) echo "error: extension $extension is not recognized"; exit ;;
+    ("cpp") compile_cpp ;;
+    ("py") echo python ;;
+    (*) echo "error: extension .$extension is not recognized"; exit ;;
   esac
 }
 
@@ -42,8 +52,8 @@ function evaluate_inputs {
     ans_file="${in_file%.*}".ans
     echo $in_file ">>" $ans_file
     case $extension in
-      cpp) ./"$out_file" < "$in_file" > "$ans_file" 2>&1 ;;
-      py) python3 $source_file < "$in_file" > "$ans_file" 2>&1 ;;
+      ("cpp") ./"$out_file" < "$in_file" > "$ans_file" 2>&1 ;;
+      ("py") python3 $source_file < "$in_file" > "$ans_file" 2>&1 ;;
     esac
   done
 }
