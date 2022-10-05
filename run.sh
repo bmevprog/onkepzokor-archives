@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 shopt -s globstar
 
 function process_params {
