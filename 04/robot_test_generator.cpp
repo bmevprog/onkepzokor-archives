@@ -10,11 +10,12 @@ int main() {
   int max_wait = 100;
   int min_wait = 0;
 
+  auto target = "./tests/generated_test.in";
+  std::ofstream out(target);
+
+  out << max_size << endl;
   for (int size = 1; size <= max_size; ++size) {
     ++case_num;
-    auto target = "./tests/generated/test_" + to_string(case_num) + ".in";
-    cout << target << endl;
-    std::ofstream out(target);
     out << size << endl;
     for (int j = 0; j < 2; ++j)
       for (int i = 0; i < size; ++i) {
