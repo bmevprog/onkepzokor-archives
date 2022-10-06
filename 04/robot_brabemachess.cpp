@@ -8,7 +8,10 @@ using namespace std;
 #define debug(...) 42
 #endif
 
-void fun(string &end_result) {
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+
   int T;
   cin >> T;
 
@@ -111,24 +114,7 @@ void fun(string &end_result) {
         }
       }
     }
-    end_result += to_string(maxtime) + '\n';
+    cout << maxtime << endl;
   }
-}
-
-#ifndef LOCAL
-int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(0);
-  string a;
-  fun(a);
-  cout << a;
   return 0;
 }
-#endif
-#ifdef LOCAL
-void test(const string &a, string &b) {
-  std::stringstream in(a);
-  std::cin.rdbuf(in.rdbuf());
-  fun(b);
-}
-#endif
