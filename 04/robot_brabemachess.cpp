@@ -20,10 +20,12 @@ void fun(string &end_result) {
     for (int j = 0; j < 2; ++j) {
       for (int i = 0; i < M; ++i) {
         cin >> move[j][i];
-        if (max[2] < move[j][i]) {
-          max[0] = j;
-          max[1] = i;
-          max[2] = move[j][i];
+        if (max[2] <= move[j][i]) {
+          if ((max[2] == move[j][i] && i < max[1]) || max[2] != move[j][i]) {
+            max[0] = j;
+            max[1] = i;
+            max[2] = move[j][i];
+          }
         }
       }
     }
