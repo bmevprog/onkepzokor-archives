@@ -23,8 +23,30 @@ int main() {
     s[i] = s[i-1] + a[i];
   }
 
-  debug(a);
-  debug(s);
+  if(a[0]%10 == 0) {
+    cout << 1 << endl;
+  } else {
+    for (int j = 1; j < n; ++j) {
+      if (s[j] % 10 == 0) {
+        cout << j + 1 << endl;
+        break;
+      }
+    }
+  }
+ 
+  for(int i=1; i<n; ++i) {
+    bool voltMegoldas = false;
+    for(int j=i+1; j<n; ++j) {
+      if (s[i-1]%10 == s[j]%10) {
+          cout << j-i+1 << endl;
+          voltMegoldas = true;
+          break;
+      }
+    }
+    if (!voltMegoldas) {
+      cout << -1 << endl;
+    }
+  }
 
   return 0;
 }
