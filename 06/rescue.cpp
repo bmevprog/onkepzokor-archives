@@ -24,11 +24,11 @@ int main() {
   }
 
   if(a[0]%10 == 0) {
-    cout << 1 << endl;
+    cout << 1 << " ";
   } else {
     for (int j = 1; j < n; ++j) {
       if (s[j] % 10 == 0) {
-        cout << j + 1 << endl;
+        cout << j + 1 << " ";
         break;
       }
     }
@@ -38,13 +38,13 @@ int main() {
     bool voltMegoldas = false;
     for(int j=i+1; j<n; ++j) {
       if (s[i-1]%10 == s[j]%10) {
-          cout << j-i+1 << endl;
-          voltMegoldas = true;
-          break;
+        cout << j - i + 1 << " ";
+        voltMegoldas = true;
+        break;
       }
     }
     if (!voltMegoldas) {
-      cout << -1 << endl;
+      cout << -1 << " ";
     }
   }
 
