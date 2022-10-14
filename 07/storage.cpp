@@ -44,8 +44,8 @@ int main() {
     swap(weights[n-1], weights[skipped]);
     debug("Most ez a súlyok sorrendje:");
     debug(weights);
-    vector<vector<vector<int>>> dp(n+1);
-    for(int i=0; i<n; ++i) {
+    vector<vector<vector<int>>> dp(2);
+    for(int i=0; i<2; ++i) { // MEM LIMIT HAX: i-bol csak az utolso es utolso elotti kell.
       dp[i].resize(n);
       for(int j=0; j<n; ++j){
         dp[i][j].resize(store_size+1);
@@ -55,25 +55,28 @@ int main() {
     dp[0][0][0] = 1; // Az elso 0 elem felhasznalasaval 0 meretu subsetbol ami 0 sulyu 1 db van.
 
     for(int i=1; i <= n-1; ++i) { // Hanyadik item (1-tol indexelunk, utolso elemet kihagyjuk a bulibol).
+      int i_curr = i%2; // MEM_HAX
+      int i_prev = (i+1)%2; //(i-1)%2 matematikailag nem -1, de C++ szerint igen.
       for (int j=0; j < n; ++j) { // Subsetben levo elemek darabszama, 0 meretut for cikluson kivul letudtuk.
         for(int k=0; k<=store_size; ++k) { // Subsetben levo elemek osszsulya.
-          dp[i][j][k] = dp[i-1][j][k];
+          dp[i_curr][j][k] = dp[i_prev][j][k];
           if (weights[i - 1] <= k && 0 < j) { // 1-tol indexeltunk vvvvvvvv
-            dp[i][j][k] += dp[i - 1][j - 1][k - weights[i - 1]];
+            dp[i_curr][j][k] += dp[i_prev][j - 1][k - weights[i - 1]]; // weights[i-1]-bol veletlenul se legyen i_prev, az csak a DP tablaban index!
           }
         }
       }
       debug("Ennyiedik elem és ezelőttieket nézzük:");
       debug(i);
       debug("Ez a tábla:");
-      debug(dp[i]);
+      debug(dp[i_curr]); //MEM_HAX
     }
 
+    int n_uccso = (n-1)%2; //MEM_HAX kiolvasas utolso i.
     for(int j=1; j<=n-1; ++j)
     {
       int sum = 0;
       for(int wcurr=store_size-weights[n-1]+1; wcurr <= store_size; ++wcurr) {
-        sum += dp[n-1][j][wcurr];
+        sum += dp[n_uccso][j][wcurr];
       }
       cout<<sum<<" ";
     }
