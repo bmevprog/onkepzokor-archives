@@ -24,10 +24,10 @@ int main() {
   //
   // Tabla merete: N * N * K
   // DP[0][0][0] = 1
-  // Altalanosan: Az i. elem vagy 1. nincs benne vagy 2. benne van a subsetekben:
-  // DP[i][j][W] = DP[i-1][j][W] + DP[i-1][j-1][W-weights[i]]
-  // Ha W-weights[i] < 0 vagy j-1 < 0 akkor a masodik tag nincs.
-  // Atalakitva W < weights[i] vagy j == 0.
+  // Altalanosan: Az i. elem vagy 1. nincs benne vagy 2. benne van a
+  // subsetekben: DP[i][j][W] = DP[i-1][j][W] + DP[i-1][j-1][W-weights[i]] Ha
+  // W-weights[i] < 0 vagy j-1 < 0 akkor a masodik tag nincs. Atalakitva W <
+  // weights[i] vagy j == 0.
   //
   // Az egyik elemet mindig kihagyjuk a bulibol es a tobbire kiszamoljuk ezt a
   // segedtablat, majd a tablaban bizonyos cellak osszege lesz a megoldas.
@@ -39,6 +39,7 @@ int main() {
   // helyre es csinaljuk ugyanezt (skipped valtozo).
   //
   // O(N^3*K)
+  int MOD = 167772161;
 
   for(int skipped=0; skipped<n; ++skipped) {
     swap(weights[n-1], weights[skipped]);
@@ -63,6 +64,8 @@ int main() {
           if (weights[i - 1] <= k && 0 < j) { // 1-tol indexeltunk vvvvvvvv
             dp[i_curr][j][k] += dp[i_prev][j - 1][k - weights[i - 1]]; // weights[i-1]-bol veletlenul se legyen i_prev, az csak a DP tablaban index!
           }
+
+          dp[i_curr][j][k] = dp[i_curr][j][k] % MOD;
         }
       }
       debug("Ennyiedik elem és ezelőttieket nézzük:");
@@ -77,6 +80,7 @@ int main() {
       int sum = 0;
       for(int wcurr=store_size-weights[n-1]+1; wcurr <= store_size; ++wcurr) {
         sum += dp[n_uccso][j][wcurr];
+        sum = sum%MOD;
       }
       cout<<sum<<" ";
     }

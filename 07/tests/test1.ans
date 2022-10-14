@@ -1,33 +1,3 @@
-["Most ez a súlyok sorrendje:"]: "Most ez a súlyok sorrendje:"
-[weights]: {1, 2, 2}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 1
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 0, 0}}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 2
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 0, 1}}
 1 1 
-["Most ez a súlyok sorrendje:"]: "Most ez a súlyok sorrendje:"
-[weights]: {2, 1, 2}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 1
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 2
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 1, 1, 0}, {0, 0, 0, 1}}
 1 1 
-["Most ez a súlyok sorrendje:"]: "Most ez a súlyok sorrendje:"
-[weights]: {2, 2, 1}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 1
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 0}}
-["Ennyiedik elem és ezelőttieket nézzük:"]: "Ennyiedik elem és ezelőttieket nézzük:"
-[i]: 2
-["Ez a tábla:"]: "Ez a tábla:"
-[dp[i_curr]]: {{1, 0, 0, 0}, {0, 0, 2, 0}, {0, 0, 0, 0}}
 0 0 
