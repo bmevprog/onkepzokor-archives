@@ -41,10 +41,6 @@ int main() {
   // O(N^3*K)
   int MOD = 167772161;
 
-  for(int skipped=0; skipped<n; ++skipped) {
-    swap(weights[n-1], weights[skipped]);
-    debug("Most ez a súlyok sorrendje:");
-    debug(weights);
     vector<vector<vector<int>>> dp(2);
     for(int i=0; i<2; ++i) { // MEM LIMIT HAX: i-bol csak az utolso es utolso elotti kell.
       dp[i].resize(n);
@@ -55,10 +51,10 @@ int main() {
 
     dp[0][0][0] = 1; // Az elso 0 elem felhasznalasaval 0 meretu subsetbol ami 0 sulyu 1 db van.
 
-    for(int i=1; i <= n-1; ++i) { // Hanyadik item (1-tol indexelunk, utolso elemet kihagyjuk a bulibol).
+    for(int i=1; i <= n; ++i) { // Hanyadik item (1-tol indexelunk, utolso elemet kihagyjuk a bulibol).
       int i_curr = i%2; // MEM_HAX
       int i_prev = (i+1)%2; //(i-1)%2 matematikailag nem -1, de C++ szerint igen.
-      for (int j=0; j < n; ++j) { // Subsetben levo elemek darabszama, 0 meretut for cikluson kivul letudtuk.
+      for (int j=0; j <= n; ++j) { // Subsetben levo elemek darabszama, 0 meretut for cikluson kivul letudtuk.
         for(int k=0; k<=store_size; ++k) { // Subsetben levo elemek osszsulya.
           dp[i_curr][j][k] = dp[i_prev][j][k];
           if (weights[i - 1] <= k && 0 < j) { // 1-tol indexeltunk vvvvvvvv
@@ -74,20 +70,15 @@ int main() {
       debug(dp[i_curr]); //MEM_HAX
     }
 
-    int n_uccso = (n-1)%2; //MEM_HAX kiolvasas utolso i.
-    for(int j=1; j<=n-1; ++j)
-    {
-      int sum = 0;
-      for(int wcurr=store_size-weights[n-1]+1; wcurr <= store_size; ++wcurr) {
-        sum += dp[n_uccso][j][wcurr];
-        sum = sum%MOD;
-      }
-      cout<<sum<<" ";
-    }
-    cout << endl;
+    int n_uccso = (n)%2; //MEM_HAX kiolvasas utolso i.
 
-    // Don't forget to swap back before going forward!
-    swap(weights[n - 1], weights[skipped]);
+    // dp[n_uccso][j][k] <- ezen megyek végig
+
+  for(int i=1; i<=n; ++i) {
+    int waktualis = weights[i-1];
+
+    for(int k=0)
+
   }
 
   return 0;
