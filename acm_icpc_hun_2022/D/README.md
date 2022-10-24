@@ -47,6 +47,8 @@ int main() {
 }
 ```
 
+### Megjegyzés
+
 - A feladat szövegéből nem derül ki egyértelműen, hogy az átlagolás művelet eredményét milyen pontossággal kell érteni. Mivel a be- és kimenetek is $2$ tizedesjegy pontossággal adandóak meg, ezért felmerülhet az a kérdés, hogy az átlag számítás eredményét is kerekíteni kellene.
   - Ha ez így lenne, akkor például a `0.50 1.00 1.00 2.00` eddigi eredmények és `1.00` target esetében megengedhető lenne az `1.01`-es 5. eredmény is, hiszen a `0.01` fölöslegből az átlagoláskor `0.00333333...` keletkezik, amit 2 tizedesjegyre kerekítve `0.00`-t kapunk.
   - Valószínűleg a feladat ezt nem így érti, mivel például az én mellékelt megoldásomat is elfogadta és a fenti logika nagyon sok bemenet esetén működik, ezért valószínűleg van ilyen hidden teszteset.
