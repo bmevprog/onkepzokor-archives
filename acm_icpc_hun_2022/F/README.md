@@ -15,11 +15,10 @@ ACM ICPC Hungary 2022
 
 $$\frac{\binom{n-(i-j+1)}{k-1}}{\binom{n}{k}} = \frac{\frac{(n-(i-j+1))!}{(n-(i-j+1)-(k-1))!(k-1)!}}{\frac{n!}{k!(n-k)!}} = \frac{\frac{(n-i+j-1))!}{(n-i+j-k)!(k-1)!}}{\frac{n!}{k!(n-k)!}} = \frac{k!(n-k)!(n-i+j-1))!}{n!(n-i+j-k)!(k-1)!} = \frac{k\cdot{}(n-i+j-1)\cdot{}\dots{}\cdot{}(n-i+j-k+1)}{n\cdot{}\dots{}\cdot{}(n-k+1)} $$
 
-- A fenti képletet inkrementálisan $j=i-1$-től kezdve számolhatjuk ki, ilyenkor a korábbi $j$-re kiszámolt értéket kell $\frac{n-(i-j+1)}{k-1}$-el szorozni.
+- A fenti képletet inkrementálisan $j=i-1$-től kezdve számolhatjuk ki, a korábbi $j$-re kiszámolt érték megfelelő törttel való szorzásával.
  
  ## Észrevételek
  
  - A fenti logikában sokaknak feltűnhet, hogy tulajdonképpen összefüggő eseményekre számoltunk valamilyen átlagot (várható értéket).
- 
- - Fontos ismerni a valszámos progversenyes feladatokhoz, hogy a várható érték lineáris, **counter-intuitív módon az összefüggő események esetében is**, tehát az összeg várható értéke a várható érték összege, vagyis a fenti logikát megtehetjük.
+ - Fontos ismerni a valszámos progversenyes feladatokhoz, hogy a várható érték lineáris, [**counter-intuitív módon az összefüggő események esetében is**](https://brilliant.org/wiki/linearity-of-expectation/), tehát az összeg várható értéke a várható érték összege, vagyis a fenti logikát megtehetjük.
  - Indikátor esemény várható értéke a valószínűsége, ezért a fenti érvelés a valószínűségekre is végiggondolható, ahol az $n$-ből adott $k$ db kiválasztásához kapcsolódó indikátor valószínűségi változó várható értékeként fogalmazzuk meg a megfelelő spawn chance-t.
