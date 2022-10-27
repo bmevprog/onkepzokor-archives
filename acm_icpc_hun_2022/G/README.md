@@ -14,7 +14,7 @@ ACM ICPC Hungary 2022
 - A kulcsmondat miatt ebben a gráfban legfeljebb $2\cdot{}10^5$ él van.
 - A gráfot bejárjuk, például szélességi kereséssel $O(|V|+|E|)$, kb $const\cdot{}10^5$ lépésben. Ha összefüggő akkor van megoldás, ha nem összefüggő akkor nincs.
 - Ha van megoldás, akkor azt a szélességi bejárás közben írhatjuk fel:
-  - Amikor egy $a_1 \in{} A$ csúcsból $b\in{}B$-be lépünk, majd onnan $a_2\in{}A$-ba, akkor az $a_2 a_1 b$ sort jegyezzük meg az $a_2$-höz.
+  - Amikor egy $a_1 \in{} A$ csúcsból $b\in{}B$-be lépünk, majd onnan $a_2\in{}A$-ba, akkor az " $a_2$ $a_1$ $b$ " sort jegyezzük meg az $a_2$-höz.
 
 ## Észrevételek
 
