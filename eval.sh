@@ -9,7 +9,7 @@ function print_usage {
   echo "files in its directory (recursively) and saves the output"
   echo "in the corresponding .ans file on the same path."
   echo
-  echo "  -d  turn on debug-mode (adds -DLOCAL flag during cpp compilation)"
+  echo "  -d  turn on debug-mode (adds -g and -DLOCAL flags during cpp compilation)"
 }
 
 function process_params {
@@ -32,7 +32,7 @@ function process_params {
 
 function compile_cpp {
   gpp_opts=()
-  $debug && gpp_opts+=( -DLOCAL )
+  $debug && gpp_opts+=( -g -DLOCAL )
 
   out_file="$source_file".out
   g++ -o "$out_file" ${gpp_opts[@]} "$source_file"
