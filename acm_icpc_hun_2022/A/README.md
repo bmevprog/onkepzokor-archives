@@ -24,7 +24,7 @@ ACM ICPC Hungary 2022
   - `DP[1] = 1`, hiszen a `.` mint Morse-szerű karakter 1 hosszú és más ilyen nincs.
   - `DP[3] = 2`, hiszen a `..` és a `-` mint Morse-szerű karakterek 3 hosszúak és más ilyen nincs.
 - Majd `i=5` és fölötte már alkalmazható az általános lépés képlete.
-- A DP táblát elég kevés $n$-re (pl. nálam $n=21$-ig) kiszámolni, mert összesen az angol ABC 26 karakterét kell csak lefedni, tehát a DP[0..n]-nek kell legalább 26-nak lennie, ez bőven megvan.
+- A DP táblát elég kevés $n$-re (pl. nálam $n=21$-ig) kiszámolni, mert összesen az angol ABC 26 karakterét kell csak lefedni, tehát a DP[0..n] összegének kell legalább 26-nak lennie, ez bőven megvan.
 
 ### Körítés
 
