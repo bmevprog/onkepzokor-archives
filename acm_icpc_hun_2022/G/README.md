@@ -19,5 +19,5 @@ ACM ICPC Hungary 2022
 ## Észrevételek
 
 - Más gráfreprezentáció is eszünkbe juthat, például egy olyan ahol az emberek a csúcsok és akkor megy él két csúcs között, ha van közös számuk.
-- Ebben az esetben figyelni kell arra, hogy az éleket nem fogjuk tudni előre kiszámolni, mivel ahhoz $~10^10$ lépés kellene, ezért trükkösen kell csinálni, hogy a BFS beleférjen. 
+- Ebben az esetben figyelni kell arra, hogy az éleket nem fogjuk tudni előre kiszámolni, mivel ahhoz ~$10^{10}$ lépés kellene, ezért trükkösen kell csinálni, hogy a BFS beleférjen. 
 - Jó trükk ezért ilyen feladatokban, hogy többféle gráfreprezentációt is kipróbálunk és megnézzük melyiket könnyebb-nehezebb használni, kihasználni vele a feladat korlátait.
