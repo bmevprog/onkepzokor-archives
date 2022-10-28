@@ -1,3 +1,5 @@
+// Az alábbi megoldásért köszönet az Árvíztűrő tükörfúrógép csapatnak! :)
+
 #include <iostream>
 #include <bits/stdc++.h>
 
