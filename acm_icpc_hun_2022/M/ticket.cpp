@@ -1,3 +1,5 @@
+// Ez a kód még nincs kész. :(
+
 #include <bits/stdc++.h>
 using namespace std;
 
