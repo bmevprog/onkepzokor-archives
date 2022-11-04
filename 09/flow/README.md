@@ -215,6 +215,3 @@ Is megoldható folyammal:
 - Vegyünk fel egy új "master source" és "master target" csúcsot.
 - Végtelen kapacitásokkal vegyünk fel kiéleket a "master source"-ból az eredetiek felé.
 - Végtelen kapacitásokkal vegyünk fel beéleket a "master target"-be az eredetiek felől.
-
-## Feladatok:
-- https://codeforces.com/problemset/problem/653/D
