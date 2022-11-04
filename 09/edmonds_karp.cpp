@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-//Edmonds-Karp algorithm.
+// Edmonds-Karp algorithm.
 class EdmondsKarp {
-
   // Source, target.
   int s, t;
 
@@ -32,45 +30,55 @@ class EdmondsKarp {
     this->t = t;
 
     this->residual.resize(v);
-    for(int i=0; i<v; ++i) {
+    for (int i = 0; i < v; ++i) {
       this->residual[i].resize(v);
     }
 
     this->flow.resize(v);
-    for(int i=0; i<v; ++i) {
+    for (int i = 0; i < v; ++i) {
       this->flow[i].resize(v);
     }
 
-    for(int i=0; i<v; ++i)
-    for(int j=0; j<v; ++j) {
-      residual[i][j] = capacity[i][j]; // Initial residual flow network is same as c.
-      flow[i][j] = 0; // Initial flow is 0.
+    for (int i = 0; i < v; ++i) {
+      for (int j = 0; j < v; ++j) {
+        // Initial residual flow network is same as c.
+        residual[i][j] = capacity[i][j];
+        // Initial flow is 0.
+        flow[i][j] = 0;
+      }
     }
   }
 
   int BFS() {
+    // Parents of vertices in BFS graph.
     parent = vector<int>(v, -1);
-    vector<int> min_capacity(v, -1);
+    // From source to vertex i the min capacity along BFS edges.
+    vector<int> max_flow_possible(v, -1);
 
-    for(int i=0; i<v; ++i) {
-      parent[i] = -1;
-      min_capacity[i] = 0;
+    for (int i = 0; i < v; ++i) {
+      max_flow_possible[i] = 0;
     }
 
-    min_capacity[s] = INT_MAX;
-    // parent[s] = -2;
+    // Source has infinite capacity.
+    max_flow_possible[s] = INT_MAX;
+    // -1 means parent not found, but source needs no parent.
+    // If source has an incoming edge, this will make BFS ignore it.
+    parent[s] = -2;
 
     queue<int> frontier;
     frontier.push(s);
-    while(!frontier.empty()) {
-      int curr = frontier.front(); frontier.pop();
-      for(int i=0; i<v; ++i) if(residual[curr][i] > 0 && parent[i] == -1) {
-        parent[i] = curr;
-        min_capacity[i] = min(residual[curr][i], min_capacity[curr]);
-        if(i == t) {
-          return min_capacity[t];
-        } else {
-          frontier.push(i);	
+    while (!frontier.empty()) {
+      int curr = frontier.front();
+      frontier.pop();
+      for (int next = 0; next < v; ++next) {
+        if (residual[curr][next] > 0 && parent[next] == -1) {
+          parent[next] = curr;
+          max_flow_possible[next] = min(residual[curr][next], max_flow_possible[curr]);
+          if (next == t) {
+            return max_flow_possible[t];
+          } else {
+            frontier.push(next);
+          }
         }
       }
     }
@@ -78,19 +86,18 @@ class EdmondsKarp {
   }
 
 public:
-
-  EdmondsKarp(vector<vector<int>>& capacity) {
+  EdmondsKarp(vector<vector<int>> &capacity) {
     this->capacity = std::move(capacity);
     this->v = this->capacity.size();
   }
 
   int run(int s, int t) {
-    init(s,t);
+    init(s, t);
 
-    while(int addflow = BFS()) {
+    while (int addflow = BFS()) {
       maxflow += addflow;
       int curr = t;
-      while(curr != s) {
+      while (curr != s) {
         int pcurr = parent[curr];
         residual[pcurr][curr] = residual[pcurr][curr] - addflow;
         residual[curr][pcurr] = residual[curr][pcurr] + addflow;
@@ -104,12 +111,14 @@ public:
 
   // Call after run.
   // After last BFS:
-  // - If parent[i] == -1, then i is on the source's side (reachable from the source).
-  // - If parent[i] != -1 AND no j exists for which parent[j] = i, i is on the edge of the cut.
+  // - If parent[i] == -1, then i is on the source's side (reachable from the
+  // source).
+  // - If parent[i] != -1 AND no j exists for which parent[j] = i, i is on the
+  // edge of the cut.
   vector<int> cut() {
     vector<int> result;
-    for(int i=0; i<v; ++i) {
-      if(parent[i]!=-1) {
+    for (int i = 0; i < v; ++i) {
+      if (parent[i] != -1) {
         result.push_back(i);
       }
     }
@@ -117,30 +126,30 @@ public:
   }
 };
 
-int main () {
+int main() {
   // Source, target, number of vertices.
-  int s,t,v;
-  cin>>s>>t>>v;
+  int s, t, v;
+  cin >> s >> t >> v;
 
   // Directed capacity adjacency matrix.
   vector<vector<int>> capacity;
   capacity.resize(v);
-  for(int i=0; i<v; ++i) {
+  for (int i = 0; i < v; ++i) {
     capacity[i].resize(v);
-    for(int j=0; j<v; ++j) {
-      cin>>capacity[i][j];
+    for (int j = 0; j < v; ++j) {
+      cin >> capacity[i][j];
     }
   }
 
-  EdmondsKarp flow(c);
-  auto maxflow = flow.run(s,t);
+  EdmondsKarp flow(capacity);
+  auto maxflow = flow.run(s, t);
   auto cut = flow.cut();
 
-  cout<<maxflow<<endl;
-  for(auto i: cut) {
-    cout<<(char)('A'+i)<<' ';
+  cout << maxflow << endl;
+  for (auto i : cut) {
+    cout << (char)('A' + i) << ' ';
   }
-  cout<<endl;
+  cout << endl;
 
   return 0;
 }
