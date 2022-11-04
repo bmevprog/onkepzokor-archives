@@ -145,6 +145,7 @@ https://youtu.be/LdOnanfc5TM
 - $O(VE^2)$
 
 https://youtu.be/RppuJYwlcI8
+https://cp-algorithms.com/graph/edmonds_karp.html
 
 ### Dinic
 
@@ -171,6 +172,7 @@ Ezt ismételgeti amíg a BFS-el elérhető a source-ból a target.
 
 https://youtu.be/M6cm8UeeziI  
 https://codeforces.com/blog/entry/104960
+https://cp-algorithms.com/graph/dinic.html
 
 ## Megjegyzések
 
