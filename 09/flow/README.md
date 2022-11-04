@@ -16,7 +16,7 @@ Amikre ez a modell passzol:
 
 $G(V,E)$ irányított (nem-negatív) élsúlyozott gráf.
 
-- Az élsúlyok kapacitásokat jelölnek: $c: E \rightarrow \mathbb{R}^{+}$ kapacitásfüggvény.
+- Az élsúlyok kapacitásokat jelölnek: $c: E \rightarrow \mathbb{R}_{\geq{}0}$ kapacitásfüggvény.
 - Kitüntetett csúcsok:
   - Source $s\in{}V$: Kiindulópont (termelő), csak kiélei vannak.
   - Target $t\in{}V$: Végállomás (fogyasztó), csak beélei vannak.
@@ -26,7 +26,7 @@ $G(V,E)$ irányított (nem-negatív) élsúlyozott gráf.
 
 ### Folyam
 
-Élekhez számok (folyamértékek) hozzárendelése $f: E \rightarrow \mathbb{R}^{+}$ folyamfüggvény.
+Élekhez számok (folyamértékek) hozzárendelése $f: E \rightarrow \mathbb{R}_{\geq{}0}$ folyamfüggvény.
 
 Úgy hogy:
 
