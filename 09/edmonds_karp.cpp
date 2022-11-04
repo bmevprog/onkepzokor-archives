@@ -1,134 +1,148 @@
-#include <iostream>
-#include <queue>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
-//Max num of vertices.
-#define N 7
 
 //Edmonds-Karp algorithm.
-struct MaxFlowMinCut {
+class EdmondsKarp {
 
-//Set by hand before calling init().
-	
-	//Actual num of vertices
-	int n;
-	
-	//Original directed capacity matrix.
-	int co[N][N];
+  // Source, target.
+  int s, t;
 
-	//Source
-	int s;
+  // Original network: directed capacity adjacency matrix.
+  vector<vector<int>> c;
 
-	//Target
-	int t;
+  // Vertex count.
+  int v;
 
+  // Residual flow network.
+  vector<vector<int>> residual;
 
-//Set by init().
-	
-	//Current directed capacity matrix.
-	int cc[N][N];
+  // Current flow.
+  vector<vector<int>> flow;
 
-	//Current flow
-	int f[N][N];
+  // Max flow found.
+  int maxflow;
 
-	//Max flow found.
-	int maxflow;
+  // Parent table in BFS.
+  vector<int> parent;
 
-//Set by BFS().
+  void init(int s, int t) {
+    this->maxflow = 0;
+    this->s = s;
+    this->t = t;
 
-	//Parent table
-	int p[N];
-	
-	//Flow on the path
-	int flow;
+    this->residual.resize(v);
+    for(int i=0; i<v; ++i) {
+      this->residual[i].resize(v);
+    }
 
-	void init() {
+    this->flow.resize(v);
+    for(int i=0; i<v; ++i) {
+      this->flow[i].resize(v);
+    }
 
-		maxflow = 0;
+    for(int i=0; i<v; ++i)
+    for(int j=0; j<v; ++j) {
+      residual[i][j] = c[i][j]; // Initial residual flow network is same as c.
+      flow[i][j] = 0; // Initial flow is 0.
+    }
+  }
 
-		for(int i=0; i<n; ++i) for(int j=0; j<n; ++j) {
-			cc[i][j] = co[i][j];
-			f[i][j] = 0;
-		}		
-	}
+  
 
-	void calculate() {
-		
-		while(BFS()) {
-			maxflow +=flow;
-			int curr = t;
-			int par;
-			while(curr!=s) {
-				par = p[curr];
-				cc[par][curr] = cc[par][curr] - flow;
-				cc[curr][par] = cc[curr][par] + flow;
-	
-				f[par][curr] = f[par][curr] + flow;
+  int BFS() {
+    parent = vector<int>(v, -1);
+    vector<int> min_capacity(v, -1);
 
-				curr = par;
-			}
-		}
-		//In p[N] now anybody whose parent is not -1 is in the cut part of the graph.
-		//Anybody whose p[i] is not -1 AND is not listed as a parent is on the edge of the cut.
-	}
+    for(int i=0; i<v; ++i) {
+      parent[i] = -1;
+      min_capacity[i] = 0;
+    }
 
+    min_capacity[s] = INT_MAX;
+    // parent[s] = -2;
 
-	bool BFS() {
+    queue<int> frontier;
+    frontier.push(s);
+    while(!frontier.empty()) {
+      int curr = frontier.front(); frontier.pop();
+      for(int i=0; i<v; ++i) if(residual[curr][i] > 0 && parent[i] == -1) {
+        parent[i] = curr;
+        min_capacity[i] = min(residual[curr][i], min_capacity[curr]);
+        if(i == t) {
+          return min_capacity[t];
+        } else {
+          frontier.push(i);	
+        }
+      }
+    }
+    return 0;
+  }
 
-		int m[n];
+public:
 
-		for(int i=0; i<n; ++i) {
-			p[i] = -1;
-			m[i] = 0;
-		}
+  EdmondsKarp(vector<vector<int>>& c) {
+    this->c = std::move(c);
+    this->v = c.size();
+  }
 
-		m[s] = -2;
-		p[s] = -2;
+  int run(int s, int t) {
+    init(s,t);
 
-		queue<int> frontier;
+    while(int addflow = BFS()) {
+      maxflow += addflow;
+      int curr = t;
+      while(curr != s) {
+        int pcurr = parent[curr];
+        residual[pcurr][curr] = residual[pcurr][curr] - addflow;
+        residual[curr][pcurr] = residual[curr][pcurr] + addflow;
+        flow[pcurr][curr] = flow[pcurr][curr] + addflow;
+        curr = pcurr;
+      }
+    }
 
-		frontier.push(s);
+    return maxflow;
+  }
 
-		while(!frontier.empty()) {
-
-			int curr = frontier.front();
-			frontier.pop();
-
-			for(int i=0; i<n; ++i) if(cc[curr][i]>0 && p[i] == -1) {
-				
-				p[i] = curr;
-				m[i] = (m[curr] == -2) ?  cc[curr][i] : min(cc[curr][i], m[curr]);
-				
-				if(i==t) {
-					flow = m[t];
-					return true;
-				} else {
-					frontier.push(i);	
-				}
-			}
-		}
-		flow=0;
-		return false;
-	}
-
+  // Call after run.
+  // After last BFS:
+  // - If parent[i] == -1, then i is on the source's side (reachable from the source).
+  // - If parent[i] != -1 AND no j exists for which parent[j] = i, i is on the edge of the cut.
+  vector<int> cut() {
+    vector<int> result;
+    for(int i=0; i<v; ++i) {
+      if(parent[i]!=-1) {
+        result.push_back(i);
+      }
+    }
+    return result;
+  }
 };
 
 int main () {
-	MaxFlowMinCut mfmc;
-	
-	cin>>mfmc.s>>mfmc.t>>mfmc.n;
+  // Source, target, number of vertices.
+  int s,t,v;
+  cin>>s>>t>>v;
 
-	for(int i=0; i<mfmc.n; ++i) for(int j=0; j<mfmc.n; ++j)
-		cin>>mfmc.co[i][j];
+  // Directed capacity adjacency matrix.
+  vector<vector<int>> c;
+  c.resize(v);
+  for(int i=0; i<v; ++i) {
+    c[i].resize(v);
+    for(int j=0; j<v; ++j) {
+      cin>>c[i][j];
+    }
+  }
 
-	mfmc.init();
-	mfmc.calculate();
-	cout<<mfmc.maxflow<<endl;
+  EdmondsKarp flow(c);
+  auto maxflow = flow.run(s,t);
+  auto cut = flow.cut();
 
-	for(int i=0; i<mfmc.n; ++i) if(mfmc.p[i]!=-1) cout<<(char)('A'+i)<<' ';
-	cout<<endl;
-	cout<<endl;
+  cout<<maxflow<<endl;
+  for(auto i: cut) {
+    cout<<(char)('A'+i)<<' ';
+  }
+  cout<<endl;
 
-	return 0;
+  return 0;
 }
