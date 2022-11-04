@@ -9,7 +9,7 @@ class EdmondsKarp {
   int s, t;
 
   // Original network: directed capacity adjacency matrix.
-  vector<vector<int>> c;
+  vector<vector<int>> capacity;
 
   // Vertex count.
   int v;
@@ -43,7 +43,7 @@ class EdmondsKarp {
 
     for(int i=0; i<v; ++i)
     for(int j=0; j<v; ++j) {
-      residual[i][j] = c[i][j]; // Initial residual flow network is same as c.
+      residual[i][j] = capacity[i][j]; // Initial residual flow network is same as c.
       flow[i][j] = 0; // Initial flow is 0.
     }
   }
@@ -81,9 +81,9 @@ class EdmondsKarp {
 
 public:
 
-  EdmondsKarp(vector<vector<int>>& c) {
-    this->c = std::move(c);
-    this->v = c.size();
+  EdmondsKarp(vector<vector<int>>& capacity) {
+    this->capacity = std::move(capacity);
+    this->v = this->capacity.size();
   }
 
   int run(int s, int t) {
@@ -125,12 +125,12 @@ int main () {
   cin>>s>>t>>v;
 
   // Directed capacity adjacency matrix.
-  vector<vector<int>> c;
-  c.resize(v);
+  vector<vector<int>> capacity;
+  capacity.resize(v);
   for(int i=0; i<v; ++i) {
-    c[i].resize(v);
+    capacity[i].resize(v);
     for(int j=0; j<v; ++j) {
-      cin>>c[i][j];
+      cin>>capacity[i][j];
     }
   }
 
