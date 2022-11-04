@@ -48,8 +48,6 @@ class EdmondsKarp {
     }
   }
 
-  
-
   int BFS() {
     parent = vector<int>(v, -1);
     vector<int> min_capacity(v, -1);
