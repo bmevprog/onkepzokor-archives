@@ -10,7 +10,7 @@ Amikre ez a modell passzol:
 - Csatornahálózat, amiben folyik a víz.
 - Elektromos hálózat, amin áram folyik (lásd Kirchhoff-törvények).
 - Internet, amin információ áramlik.
-- Advanced: Bármilyen "local összeg-constraint puzzle", aminek semmi köze valami áramlásához.
+- Advanced: Nem áramlik semmi, lokális kapcsolatokat/kényszereket modellezünk vele. Pl. 10-es feladat.
 
 ### Hálózat
 
