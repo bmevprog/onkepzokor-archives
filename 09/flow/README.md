@@ -26,7 +26,9 @@ $G(V,E)$ irányított (nem-negatív) élsúlyozott gráf.
 
 ### Folyam
 
-Élekhez számok (folyamértékek) hozzárendelése, úgy hogy:
+Élekhez számok (folyamértékek) hozzárendelése $f: E \rightarrow \mathbb{R}^{+}$ folyamfüggvény.
+
+Úgy hogy:
 
 - Nem-negatív és a kapacitásnál nem több: $\forall{}e\in{}E$  
 
