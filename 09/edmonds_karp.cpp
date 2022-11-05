@@ -29,15 +29,8 @@ class EdmondsKarp {
     this->s = s;
     this->t = t;
 
-    this->residual.resize(v);
-    for (int i = 0; i < v; ++i) {
-      this->residual[i].resize(v);
-    }
-
-    this->flow.resize(v);
-    for (int i = 0; i < v; ++i) {
-      this->flow[i].resize(v);
-    }
+    this->residual = vector<vector<int>>(v, vector<int>(v));
+    this->flow = vector<vector<int>>(v, vector<int>(v));
 
     for (int i = 0; i < v; ++i) {
       for (int j = 0; j < v; ++j) {
