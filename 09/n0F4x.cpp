@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 #include <set>
+#include <climits>
+#include <cstddef>
 
 
 class Edge;
