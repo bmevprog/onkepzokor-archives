@@ -109,15 +109,17 @@ std::shared_ptr<Node> Graph::getNode(size_t id) { return _nodes.at(id); }
 
 std::unique_ptr<std::vector<std::vector<Edge *>>> Graph::make_level_graph(std::shared_ptr<Node> source,
                                                                           std::shared_ptr<Node> target) {
+  std::vector<bool> visited;
+  visited.resize(_nodes.size(), false);
+  visited[source->_id] = true;
   auto level_graph{std::make_unique<std::vector<std::vector<Edge *>>>()};
   bool reached_target = false;
-  std::set<size_t> visited;
-  std::set<size_t> visited_frontier;
+  std::vector<bool> visited_frontier{visited};
   std::queue<std::vector<Edge *>> paths;
   for (auto &edge : source->_edges) {
     if (edge._capacity - edge._flow > 0) {
       paths.push({&edge});
-      visited.emplace(edge._to->_id);
+      visited.at(edge._to->_id) = true;
       if (edge._to->_id == target->_id) {
         reached_target = true;
         level_graph->push_back(paths.back());
@@ -130,11 +132,11 @@ std::unique_ptr<std::vector<std::vector<Edge *>>> Graph::make_level_graph(std::s
       auto path = paths.front();
       paths.pop();
       for (auto &edge : path.back()->_to->_edges) {
-        if (count(visited.begin(), visited.end(), edge._to->_id) == 0 && (edge._capacity - edge._flow) > 0) {
+        if ((edge._capacity - edge._flow) > 0 && !visited.at(edge._to->_id)) {
           auto new_path{path};
           new_path.push_back(&edge);
           paths.push(new_path);
-          visited_frontier.emplace(edge._to->_id);
+          visited_frontier.at(edge._to->_id) = true;
           if (edge._to->_id == target->_id) {
             reached_target = true;
             level_graph->push_back(new_path);
@@ -142,10 +144,7 @@ std::unique_ptr<std::vector<std::vector<Edge *>>> Graph::make_level_graph(std::s
         }
       }
     }
-    for (auto id : visited_frontier) {
-      visited.emplace(id);
-    }
-    visited_frontier.clear();
+    visited = visited_frontier;
   }
   return level_graph;
 }
