@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 
+#ifdef LOCAL
 #include "../algo/debug.h"
+#else
+#define debug(...) 42
+#endif
 
 using namespace std;
 
@@ -216,7 +220,7 @@ void solve() {
     debug(cut);
 
     if (maxflow == penguins) {
-      cout << t << " ";
+      cout << (found ? " ": "") << i;
       found = true;
     }
   }
@@ -231,7 +235,7 @@ void solve() {
 int main() {
   int cases; cin>>cases;
 
-  while(--cases) {
+  while(cases--) {
     solve();
   }
 
