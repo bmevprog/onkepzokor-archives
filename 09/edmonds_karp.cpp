@@ -85,8 +85,8 @@ class EdmondsKarp {
   }
 
 public:
-  EdmondsKarp(vector<vector<int>> &capacity) {
-    this->capacity = std::move(capacity);
+  EdmondsKarp(const vector<vector<int>> &capacity) {
+    this->capacity = capacity;
     this->v = this->capacity.size();
   }
 
@@ -209,7 +209,7 @@ void solve() {
     int t = 2*i;
     debug("BEGIN TO TARGET:", t);
     // s,t,v = source, target, num of vertices
-    
+
     auto maxflow = flow.run(s, t);
     debug(maxflow);
     auto cut = flow.cut();
