@@ -70,6 +70,7 @@ class EdmondsKarp {
       for (int next = 0; next < v; ++next) {
         if (residual[curr][next] > 0 && parent[next] == -1) {
           parent[next] = curr;
+          debug(curr, next);
           max_flow_possible[next] = min(residual[curr][next], max_flow_possible[curr]);
           if (next == t) {
             return max_flow_possible[t];
@@ -79,6 +80,7 @@ class EdmondsKarp {
         }
       }
     }
+    debug("BFS END", parent);
     return 0;
   }
 
@@ -92,6 +94,7 @@ public:
     init(s, t);
 
     while (int addflow = BFS()) {
+      debug("AFTER BFS");
       maxflow += addflow;
       debug(parent);
       int curr = t;
@@ -101,9 +104,12 @@ public:
         residual[curr][pcurr] = residual[curr][pcurr] + addflow;
         flow[pcurr][curr] = flow[pcurr][curr] + addflow;
         curr = pcurr;
+        debug(curr);
       }
+      debug(flow);
+      debug(residual);
     }
-
+    debug("DONE FLOW");
     return maxflow;
   }
 
@@ -196,15 +202,18 @@ void solve() {
   }
 
   debug(capacity);
+  EdmondsKarp flow(capacity);
 
   bool found = false;
   for(int i=0; i<floes; ++i) {
     int t = 2*i;
+    debug("BEGIN TO TARGET:", t);
     // s,t,v = source, target, num of vertices
-
-    EdmondsKarp flow(capacity);
+    
     auto maxflow = flow.run(s, t);
+    debug(maxflow);
     auto cut = flow.cut();
+    debug(cut);
 
     if (maxflow == penguins) {
       cout << t << " ";
