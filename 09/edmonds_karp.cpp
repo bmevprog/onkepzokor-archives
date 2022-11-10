@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+
+#include "../algo/debug.h"
+
 using namespace std;
 
 // Edmonds-Karp algorithm.
@@ -62,6 +65,7 @@ class EdmondsKarp {
     frontier.push(s);
     while (!frontier.empty()) {
       int curr = frontier.front();
+      debug(curr);
       frontier.pop();
       for (int next = 0; next < v; ++next) {
         if (residual[curr][next] > 0 && parent[next] == -1) {
@@ -89,6 +93,7 @@ public:
 
     while (int addflow = BFS()) {
       maxflow += addflow;
+      debug(parent);
       int curr = t;
       while (curr != s) {
         int pcurr = parent[curr];
@@ -119,30 +124,107 @@ public:
   }
 };
 
-int main() {
-  // Source, target, number of vertices.
-  int s, t, v;
-  cin >> s >> t >> v;
+void solve() {
 
+  // num of ice pieces
+  // 1 <= ... <= 100
+  int floes; 
+  int penguins = 0;
+
+  // max jump distance
+  // 0 <= ... <= 100,000
+  double maxd, maxdsq;
+
+  cin >> floes >> maxd; maxdsq = maxd * maxd;
+
+  vector<int> x(floes), y(floes), n(floes), m(floes);
+
+  for(int i=0; i<floes; ++i) {
+    // ith ice floe coordinates 
+    // -10,000 <= ... <= 10,000
+    int xi, yi;
+    
+    // number of penguins on it
+    // 0 <= ... <= 10
+    int ni;
+
+    // max num of penguins that can go through (jump off)
+    // 1 <= ... <= 200
+    int mi;
+
+    cin >> xi >> yi >> ni >> mi;
+    x[i] = xi; y[i] = yi; n[i] = ni; m[i] = mi;
+
+    penguins += ni;
+  }
+
+  debug(x);
+  debug(y);
+  debug(n);
+  debug(m);
+
+  // VERTICES:
+  // i in 0..(floes-1):
+  //   EDGE: 2*i -> 2*i+1 = mi: max num of penguins that can go through the ith floe
+  // i in 0..(floes-1) and j in 0..(floes-1):
+  //   if we can jump between i and j:
+  //     EDGE: 2*i+1 -> 2*j = INT_MAX
+  //     EDGE: 2*j+1 -> 2*i = INT_MAX
+  // + artificial source: 2*floes, 2*floes -> 2*i = ni: number of penguins on the ith floe
+  //
+  // TARGETS:
+  //  i in 0..(floes-1):
+  //    target = 2*i: we don't jump off this floe, don't go through its capacity
+  
   // Directed capacity adjacency matrix.
-  vector<vector<int>> capacity;
-  capacity.resize(v);
-  for (int i = 0; i < v; ++i) {
-    capacity[i].resize(v);
-    for (int j = 0; j < v; ++j) {
-      cin >> capacity[i][j];
+  int v = 2*floes + 1;
+  vector<vector<int>> capacity(v, vector<int>(v));
+  int s = 2*floes;
+
+  for(int i=0; i<floes; ++i) {
+    capacity[2*i][2*i+1] = m[i];
+    capacity[s][2*i] = n[i];
+
+    for(int j=0; j<floes; ++j) if (i!=j) {
+      auto distsq = (x[i]-x[j]) * (x[i]-x[j]) + (y[i]-y[j]) * (y[i]-y[j]);
+
+      if(distsq <= maxdsq) { // question: allow epsilon diff here?
+        capacity[2*i+1][2*j] = INT_MAX;
+        capacity[2*j+1][2*i] = INT_MAX;
+      }
     }
   }
 
-  EdmondsKarp flow(capacity);
-  auto maxflow = flow.run(s, t);
-  auto cut = flow.cut();
+  debug(capacity);
 
-  cout << maxflow << endl;
-  for (auto i : cut) {
-    cout << (char)('A' + i) << ' ';
+  bool found = false;
+  for(int i=0; i<floes; ++i) {
+    int t = 2*i;
+    // s,t,v = source, target, num of vertices
+
+    EdmondsKarp flow(capacity);
+    auto maxflow = flow.run(s, t);
+    auto cut = flow.cut();
+
+    if (maxflow == penguins) {
+      cout << t << " ";
+      found = true;
+    }
   }
+
+  if(!found) {
+      cout << -1;
+    }
+
   cout << endl;
+}
+
+int main() {
+  int cases; cin>>cases;
+
+  while(--cases) {
+    solve();
+  }
 
   return 0;
 }
