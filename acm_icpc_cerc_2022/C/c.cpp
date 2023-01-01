@@ -32,7 +32,7 @@ int main() {
     }
   }
 
-  while(distances.size() != 0 ){
+  while(!distances.empty()){
     auto it = min_element(
       distances_normalized.begin(),
       distances_normalized.end(),
